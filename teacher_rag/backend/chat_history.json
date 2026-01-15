@@ -82,5 +82,19 @@
         "ai_response": "आपका स्वागत है। मैं आपकी सहायता करने के लिए यहाँ हूँ। कृपया अपना प्रश्न पूछें ताकि मैं उसे समझकर आपकी सहायता कर सकूँ।",
         "sentiment_score": 1.0,
         "avatar_state": "happy"
+    },
+    {
+        "timestamp": "2026-01-15T17:39:43.308875",
+        "user_prompt": "bhindi ki sabji kaise banate hain",
+        "ai_response": "Aapko bhindi ki sabji banane ke barre mein bataya ja sakta hai:\n\nPehle, aapko bhindi ko chunna hoga aur usko patton mein kaatna hoga. Phir, aapko usko ek pan mein rakhna hoga aur usi par tamatar, lal mirch, hari mirch, dhaniya powder, amchur powder, namak aur tel lagnaa hoga. \n\nApane pan ko medium aanch par rakhkar, uski sabji ko ek side se dhone lagni hogi. Iske baad, aapko uski sabji ko halka sa pakaana hoga. Jab sabji pak jaye, to aapko usi ko thode dekhkar thanda karne ke baad serve karna hoga.\n\nYe ek aasan aur swadisht vyanjan hai jo aap apne dastarkhwan par zaroor serve karenge.",
+        "sentiment_score": 0.0,
+        "avatar_state": "neutral"
+    },
+    {
+        "timestamp": "2026-01-15T17:40:51.230681",
+        "user_prompt": "Mujhe gadi chalana sikhai Ho",
+        "ai_response": "Kya aapke liye ek prashikshit hai kyonki aapne principal component analysis (PCA) ke baare mein seekhne ki koshish ki hai, lekin aapke prashne mein mujhe gadi chalana sikhai diya gaya hai.\n\nAisa lagta hai ki aapke prashne mein ek galti hai. Yadi aap mujhe PCA ya machine learning ke baare mein koi prashn puchhte hain to main aapko uttar dena pasand karta.\n\nLekin yadi aap mujhe gadi chalana sikhai dijiye, to main yeh keh sakta hoon ki gadi chalana ek mahatvapoorn kshetra hai aur iski madad se aap kisi bhi jagah par yatra kar sakte hain, lekin main aapko gadi chalane ki vyavaharika shiksha nahin di sakti.\n\nAapke liye, main PCA aur machine learning ke baare mein jaankari pradaan kar sakta hoon. Yah kshetra aapke data analysis mein madad kar sakta hai aur aapko iska anubhav karna zaroori hai.",
+        "sentiment_score": 0.8,
+        "avatar_state": "happy"
     }
 ]

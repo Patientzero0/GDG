@@ -29,15 +29,19 @@ const MemorySidebar = ({ memories = [], nextTopic }) => {
                     </div>
 
                     <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
-                        {contextLog.map((log) => (
-                            <div key={log.id} className={`text-xs p-3 rounded-lg ${log.type === 'system' ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-200' :
-                                    log.type === 'ai' ? 'bg-blue-500/10 border border-blue-500/20 text-blue-100' :
-                                        'bg-white/5 border border-white/10 text-gray-300'
-                                }`}>
-                                <span className="uppercase text-[10px] font-bold opacity-50 mb-1 block">{log.type}</span>
-                                {log.text}
-                            </div>
-                        ))}
+                        {(!memories || memories.length === 0) ? (
+                            <div className="text-gray-500 text-xs italic">No context yet...</div>
+                        ) : (
+                            memories.map((log, index) => (
+                                <div key={index} className={`text-xs p-3 rounded-lg ${log.type === 'system' ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-200' :
+                                        log.sender === 'ai' ? 'bg-blue-500/10 border border-blue-500/20 text-blue-100' :
+                                            'bg-white/5 border border-white/10 text-gray-300'
+                                    }`}>
+                                    <span className="uppercase text-[10px] font-bold opacity-50 mb-1 block">{log.sender || log.type}</span>
+                                    {log.text || log.user_prompt || log.ai_response}
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

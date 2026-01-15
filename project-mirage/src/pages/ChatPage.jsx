@@ -11,7 +11,7 @@ import { useDashboard } from '../context/DashboardContext';
 import '../styles/teacher.css';
 
 const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
-  const HEYGEN_API_KEY = "sk_V2_hgu_kzgT30p9Q5j_lsLYyCuNNNi4sEU0bA5KfjygDL9Edkoy";
+  const HEYGEN_API_KEY = "sk_V2_hgu_kkE458xlCUQ_hrQK1ucV9JEKtxIrTr0dUwghjzVzQVn7";
   const AVATAR_ID = "Bryan_IT_Sitting_public";
   const { updateDashboard } = useDashboard();
 
@@ -201,11 +201,17 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
         const result = await response.json();
 
         // Adapt Refund Agent Response to Dashboard/Chat format
+        // Normalize sentiment (0-10 to -1 to 1)
+        const normalizedScore = (result.sentiment_score - 5) / 5;
         data = {
           answer: result.message,
-          sentiment_score: result.sentiment_score,
-          avatar_state: result.sentiment_score > 7 ? 'happy' : (result.sentiment_score < 4 ? 'concerned' : 'neutral'),
-          // Mock other fields if needed
+          sentiment_score: normalizedScore,
+          avatar_state: normalizedScore > 0.3 ? 'happy' : (normalizedScore < -0.3 ? 'concerned' : 'neutral'),
+          memory_update: result.conversation_history ? result.conversation_history.map(msg => ({
+            text: msg.content,
+            sender: msg.role === 'user' ? 'user' : 'ai',
+            type: msg.role === 'user' ? 'user' : 'ai'
+          })) : []
         };
       } else {
         // TEACHER RAG API
