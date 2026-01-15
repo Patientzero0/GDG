@@ -1,0 +1,171 @@
+.home-hero {
+  height: 60vh;
+  padding-top: 180px;
+  text-align: center;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.home-hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  margin: 0;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: white !important;
+}
+
+.home-hero p {
+  margin-top: 12px;
+  opacity: 0.7 !important;
+  display: block !important;
+  visibility: visible !important;
+  color: white !important;
+}
+
+/* MODE GRID */
+.mode-grid {
+  min-height: 100vh;
+  padding: 80px 120px;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.mode-grid > * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* MODE CARD */
+.mode-card {
+  position: relative;
+  padding: 40px;
+  border-radius: 36px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: none;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  min-height: 500px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.mode-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 24px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: white !important;
+}
+
+.mode-card p {
+  margin-top: 12px;
+  opacity: 0.7 !important;
+  max-width: 320px;
+  display: block !important;
+  visibility: visible !important;
+  color: white !important;
+}
+
+.mode-card .enter {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.6;
+}
+
+.lottie-box {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 24px;
+}
+
+/* Light Theme Adjustments */
+body.light-theme .mode-card {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .home-hero h1,
+body.light-theme .home-hero p {
+  color: #1a1a1a;
+}
+
+body.light-theme .mode-card h2 {
+  color: #1a1a1a;
+}
+
+body.light-theme .mode-card p {
+  color: #555;
+}
+
+/* Hover Effect */
+.mode-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mode-grid {
+    padding: 60px 60px;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding-top: 120px;
+    height: auto;
+  }
+  
+  .home-hero h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+  }
+  
+  .home-hero p {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+  }
+  
+  .mode-grid {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+  
+  .mode-card {
+    padding: 30px;
+    min-height: 400px;
+  }
+  
+  .mode-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .mode-card p {
+    font-size: 0.95rem;
+  }
+  
+  .lottie-box {
+    max-height: 200px;
+  }
+}

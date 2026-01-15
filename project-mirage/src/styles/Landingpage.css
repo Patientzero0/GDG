@@ -1,0 +1,141 @@
+/* --- Global Layout --- */
+.landing-container {
+  min-height: 100vh;
+  background-color: #050505; /* Deep dark background */
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.main-content {
+  padding-top: 120px; /* Space for fixed Navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  z-index: 2;
+  position: relative;
+}
+
+/* --- Ambient Background --- */
+.ambient-glow-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- Hero Section --- */
+.home-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.home-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, #fff, #999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-hero p {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* --- The Grid --- */
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+/* --- The Cards --- */
+.mode-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  height: 100%;
+}
+
+.mode-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.lottie-box {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 24px;
+  /* If no lottie is loaded, show a placeholder circle */
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.enter-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Show "Enter ->" on hover */
+.mode-card:hover .enter-link {
+  opacity: 1;
+  transform: translateY(0);
+  color: #3b82f6; /* Blue accent */
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .mode-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .home-hero h1 {
+    font-size: 2.5rem;
+  }
+}

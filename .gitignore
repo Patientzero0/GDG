@@ -1,0 +1,56 @@
+# ===============================
+# Dependencies
+# ===============================
+node_modules/
+
+# ===============================
+# Build output (Vite)
+# ===============================
+dist/
+build/
+
+# ===============================
+# Environment variables
+# ===============================
+.env
+.env.local
+.env.*.local
+
+# ===============================
+# Logs
+# ===============================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===============================
+# OS / System files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Editor / IDE files
+# ===============================
+.vscode/
+.idea/
+*.swp
+
+# ===============================
+# Cache
+# ===============================
+.eslintcache
+.cache/
+
+# ===============================
+# Optional: lock files (KEEP one)
+# ===============================
+# Uncomment if you want to ignore other lock files
+# yarn.lock
+# pnpm-lock.yaml
+
+# ===============================
+# Misc
+# ===============================
+*.local

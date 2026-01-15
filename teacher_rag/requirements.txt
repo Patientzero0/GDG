@@ -1,0 +1,18 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic-settings
+groq
+gTTS # Changed from google-cloud-texttospeech
+youtube-transcript-api
+sentence-transformers
+faiss-cpu
+numpy
+requests
+beautifulsoup4
+lxml
+aiohttp
+aiofiles
+python-multipart
+fastapi-cors
+google-api-python-client
