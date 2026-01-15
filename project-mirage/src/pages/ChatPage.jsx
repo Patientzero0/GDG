@@ -15,6 +15,10 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
   const AVATAR_ID = "Bryan_IT_Sitting_public";
   const { updateDashboard } = useDashboard();
 
+  // Session ID for refund agent
+  const [sessionId] = useState(() => "sess_" + Math.random().toString(36).substr(2, 9));
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const [messages, setMessages] = useState([
     { text: welcomeMsg || "Hello! How can I help you today?", sender: "received", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
   ]);
@@ -161,30 +165,59 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
 
   const handleSend = async (manualText = null) => {
     const textToSend = (typeof manualText === 'string' ? manualText : inputText).trim();
-    if (!textToSend) return;
+    if (!textToSend && !selectedImage) return;
 
     const now = new Date();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     const userMessage = {
-      text: textToSend,
+      text: textToSend || (selectedImage ? "[Image Sent]" : ""),
       sender: "sent",
-      time: time
+      time: time,
+      image: selectedImage ? URL.createObjectURL(selectedImage) : null
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInputText("");
+    const imageToSend = selectedImage; // local copy
+    setSelectedImage(null); // clear after sending
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: textToSend })
-      });
+      let data;
 
-      if (!response.ok) throw new Error("Backend API Failed");
+      if (type === 'customer') {
+        // REFUND AGENT API
+        const formData = new FormData();
+        formData.append("session_id", sessionId);
+        if (textToSend) formData.append("message", textToSend);
+        if (imageToSend) formData.append("image", imageToSend);
 
-      const data = await response.json();
+        const response = await fetch('http://localhost:8000/refund/chat', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) throw new Error("Backend API Failed");
+        const result = await response.json();
+
+        // Adapt Refund Agent Response to Dashboard/Chat format
+        data = {
+          answer: result.message,
+          sentiment_score: result.sentiment_score,
+          avatar_state: result.sentiment_score > 7 ? 'happy' : (result.sentiment_score < 4 ? 'concerned' : 'neutral'),
+          // Mock other fields if needed
+        };
+      } else {
+        // TEACHER RAG API
+        const response = await fetch('http://localhost:8000/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: textToSend })
+        });
+
+        if (!response.ok) throw new Error("Backend API Failed");
+        data = await response.json();
+      }
 
       updateDashboard(data);
 
@@ -258,6 +291,7 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
           {messages.map((msg, index) => (
             <div key={index} className={`message ${msg.sender}`}>
               <p>{msg.text}</p>
+              {msg.image && <img src={msg.image} alt="User Upload" style={{ maxWidth: '200px', borderRadius: '8px', marginTop: '5px' }} />}
               <span>{msg.time}</span>
             </div>
           ))}
@@ -265,14 +299,34 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
         </div>
 
         <div className="chat-input-container">
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-            disabled={!isSessionActive && !isListening}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flex: 1 }}>
+            {/* Image Upload Button (Only for Customer) */}
+            {type === 'customer' && (
+              <label className="image-upload-btn" style={{ cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center' }}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={(e) => {
+                    if (e.target.files.length > 0) setSelectedImage(e.target.files[0]);
+                  }}
+                />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={selectedImage ? "#2563eb" : "#6b7280"} strokeWidth="2">
+                  <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                </svg>
+              </label>
+            )}
+
+            <input
+              type="text"
+              placeholder={selectedImage ? "Add a caption..." : "Type your message..."}
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              disabled={!isSessionActive && !isListening}
+              style={{ flex: 1 }}
+            />
+          </div>
 
           <button id="send-btn" onClick={() => handleSend()} disabled={!isSessionActive}>
             Send

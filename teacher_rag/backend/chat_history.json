@@ -40,5 +40,47 @@
         "ai_response": "Neural networks ko ek aisa computing system mana jata hai jo jeeviko neural networks ke roop ko lekar viksit kiya gaya hai. Ismein aane wale units ko \"neuron\" kahte hain jo information ka process karta hai connections ke madhyam se. Sikkhe ke dauran, yeh connections ki weights ko adjust karke sikaai hai. Supervised learning mein hamaare paas input data aur target output hai. Network learn karta hai tabhi jab wah actual aur predicted outputs ke beech ki galti ko kam karta hai. Is prakriya ko backpropagation kiya jaata hai.\n\nDeep learning mein multiple layers lagu kiye jate hain data ki hierarchical maan banane ke liye. Convolutional neural networks aur image processing tasks ke liye kafi effective hain. Recurrent neural networks time series aur text jaisi sequential data ko handle karte hain. Transformers ne natural language processing ko badal diya hai attention mechanisms ke madhyam se.\n\nIske alawa, machine learning ek artificial intelligence ka ek subset hai jo data se sikhne ka prayas karta hai. Iska teen tarah hain: supervised learning, unsupervised learning, aur reinforcement learning. Supervised learning mein hamaare paas labeled data aur inputs ke saath output hai. Classification discrete categories ke prati prediction karta hai jabki regression continuous values ke prati prediction karta hai. Unsupervised learning mein hamaare paas unlabeled data hai aur clustering ke madhyam se patterns find karne hai. Reinforcement learning mein agent ek environment ke saath interaction krke apni shiksha karta hai.\n\nNeural networks aur machine learning ke saath sabse mahatvapoorn baat hai ki ve humara model training data se kafi acchi tarah se seekhe to bhi hamaare paas new data par kam se kam perform karte hain. Iski wajah yeh hai ki model training data ko overfit karta hai aur new data par poori tarah se nahi perform karta. Is samasya ko solve karne ke liye hamein regularization techniques ka use karna hota hai jaise ki L1 aur L2. Cross validation bhi humein model performance estimate karne mein madad karta hai.\n\nAb main aapko Principal Component Analysis (PCA) ke baare mein bhi jawab dena chata hoon. PCA ek dimensionality reduction technique hai jo data science mein vibhinn samay ke liye upyogi hoti hai. Yeh sabse bada kaam hai ye data ki un directions ko find karne ka jo maximum variance ke saath jaankari rakhti hain. Ye directions ko principal components kahte hain aur ve ek orthogonal basis banati hain. Pehle principal component mein maximum variance hota hai, dusre mein second maximum varience hota hai aur is prakriya ko chalu rakha jata hai.",
         "sentiment_score": 0.0,
         "avatar_state": "neutral"
+    },
+    {
+        "timestamp": "2026-01-15T16:34:37.256624",
+        "user_prompt": "aap mujhe neural network Samjha sakte ho kya",
+        "ai_response": "Neural networks aapke dhanushmanthan mein khaas mahatva rakhte hain. Yeh aapki computer systems ko jeevan kee tarah kaam kareen aati hain. Ismein interconnected unit hote hain jo ki neurons kehte hain, ve data ko process karte hain.\n\n Ye neurons inter connected hote hi, unke beech connections rahate hain, jinhonein aap weight karte hain. Yeha se neural network seekhi karte hain, yaha se woh learning hota hai.\n\nIsmein supervised learning aapke pass input aata hai aur target output bhi. Yeha se neural network padhne ka kaam karte hai. Ye learning is process ke madhyam se hota hai, jise ekneam backpropagation kaha jata hai.\n\nYe is tarah deep learning se judi hui hai, yaha multiple layers hoti hain, jo apne data ka hierarchical representation banaati hain. \n\n Ye ismein convolusional neural networks aate hain, jo kisi ek image processing kaam ko achi tarah se kar sakte hain.",
+        "sentiment_score": 0.0,
+        "avatar_state": "neutral"
+    },
+    {
+        "timestamp": "2026-01-15T16:54:30.648074",
+        "user_prompt": "can you help me with neural networks",
+        "ai_response": "कंप्यूटिंग सिस्टम की एक प्रकार को समझाते हुए, जिसे न्यूरल नेटवर्क कहा जाता है। न्यूरल नेटवर्क जैविक न्यूरल नेटवर्क से प्रेरित होते हैं जिनमें जुड़े हुए इकाइयों को न्यूरॉन्स कहा जाता है जो जानकारी को प्रदान करते हैं। न्यूरल नेटवर्क सिस्टम द्वारा जानकारी को प्रसंस्कृत करने में मदद करने के लिए कनेक्शनों का उपयोग किया जाता है। सीखना तब होता है जब कनेक्शनों के वज़नों को समायोजित किया जाता है। \n\nन्यूरल नेटवर्क में, हमारे पास इनपुट डेटा और टारगेट आउटपुट होते हैं। नेटवर्क सीखने का मुख्य उद्देश्य है पूर्वानुमान और असली आउटपुट के बीच की अनुरेखा को कम करना। यह विशेष प्रक्रिया को प्रतीक्षारत प्रसार कहा जाता है। \n\nन्यूरल नेटवर्क को और अधिक प्रभावी बनाने के लिए, उनका उपयोग मैकेनिकल इमेज प्रोसेसिंग जैसे इमेज प्रोसेसिंग के लिए किया जाता है। इसी तरह, रिक्यूरेंट न्यूरल नेटवर्क समय-समय और धारणाओं जैसे सीक्वेंशियल डेटा के लिए उपयोग किए जाते हैं। \n\nअब, जब बात आती है विशेष रूप से धारितामुक्त डेटा के लिए एक मॉडल का उपयोग करने के, तो हमें ध्यान देना चाहिए की, यह एक महत्वपूर्ण कदम है।",
+        "sentiment_score": 0.0,
+        "avatar_state": "neutral"
+    },
+    {
+        "timestamp": "2026-01-15T16:56:19.001000",
+        "user_prompt": "I want a refund",
+        "ai_response": "कम से कम दो बार हमनें सीखा है कि प्रशिक्षण डेटा को बहुत अच्छी तरह से सीखने के कारण मॉडल को नए डेटा पर प्रदर्शन करने के लिए असफल बना देते हैं। इसका कारण है कि मॉडल शिक्षा प्राप्त करता है तो वह शिक्षा के डोमेन के अन्दर ही, परंतु नए डेटा पर वह असफल हो जाता है। यह भी सीखते रहें कि मॉडल को किसी भी प्रकार की सीमाओं के बिना प्रशिक्षित होने न दें।",
+        "sentiment_score": -0.8,
+        "avatar_state": "concerned"
+    },
+    {
+        "timestamp": "2026-01-15T17:17:42.946422",
+        "user_prompt": "Mujhe neural network samjhaie",
+        "ai_response": "Ek neural network ek computer ke system hai jo jiva se judi neural networks par aadhaarit hai. Inmein ekdoosre se judi unit kehte hue neurons hote hain jo information process karte hain. Yeh connection ka upyog karte hue sambandh se data processing karte hain. Neural network mein, learning through hai jiski madad se in connections ke weights ko upyog karte hue badla jata hai.\n\nAb aapke question par aate hain, supervised learning mein hum input data aur target outputs ke sath aate hain. Neural network yeh bhi seekhne ki koshish karta hai ki iska predicted output actual output se kahaan door hai. Is baare mein ek process hai, wo backpropagation kaha jata hai.\n\nDeep learning ka upyog multiple layers ka upyog karte hue data ki hierarchical representation seekhne ke liye karta hai. Convolutional neural networks image processing ka kshetra ke liye vishesh roop se prabhavi hai. Recurrent neural networks sequential data jaise ki time series aur text handle karne ke liye upyog kiye jate hain. Transformes ne natural language processing mein attention mechanisms ka upyog karke ek nayi disha dikhayi hai.",
+        "sentiment_score": 0.0,
+        "avatar_state": "neutral"
+    },
+    {
+        "timestamp": "2026-01-15T17:18:58.026478",
+        "user_prompt": "aapka bahut bahut dhanyavad",
+        "ai_response": "Aapka bahut bahut dhanyavad ke liye kahan do. Ye shabdon ka upyog machine learning ya data science ke kshetra se judi sahayta karne ke liye kiya jaataa hai.",
+        "sentiment_score": 1.0,
+        "avatar_state": "happy"
+    },
+    {
+        "timestamp": "2026-01-15T17:19:19.449397",
+        "user_prompt": "thank you",
+        "ai_response": "आपका स्वागत है। मैं आपकी सहायता करने के लिए यहाँ हूँ। कृपया अपना प्रश्न पूछें ताकि मैं उसे समझकर आपकी सहायता कर सकूँ।",
+        "sentiment_score": 1.0,
+        "avatar_state": "happy"
     }
 ]

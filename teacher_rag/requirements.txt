@@ -16,3 +16,5 @@ aiofiles
 python-multipart
 fastapi-cors
 google-api-python-client
+langgraph
+pillow

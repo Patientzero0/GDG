@@ -41,32 +41,34 @@ function App() {
            Corresponds to: teacher.html 
            Description: Chat interface with Teacher Assistant logic.
         */}
-        <Route 
-          path="/teacher" 
+        <Route
+          path="/teacher"
           element={
-            <ChatPage 
-              title="Teacher Assistant" 
-              lottieData={teacherAnim} 
-              avatarSrc="https://i.pravatar.cc/40?u=teacher" 
+            <ChatPage
+              type="teacher"
+              title="Teacher Assistant"
+              lottieData={teacherAnim}
+              avatarSrc="https://i.pravatar.cc/40?u=teacher"
               welcomeMsg="I am a teacher assistant, how can I help you?"
             />
-          } 
+          }
         />
 
         {/* Route: /customer 
            Corresponds to: customer.html 
            Description: Chat interface with Customer Service logic.
         */}
-        <Route 
-          path="/customer" 
+        <Route
+          path="/customer"
           element={
-            <ChatPage 
-              title="Customer Service Assistant" 
-              lottieData={customerAnim} 
-              avatarSrc="https://i.pravatar.cc/40?u=customer" 
+            <ChatPage
+              type="customer"
+              title="Customer Service Assistant"
+              lottieData={customerAnim}
+              avatarSrc="https://i.pravatar.cc/40?u=customer"
               welcomeMsg="I am a customer service assistant. How can I help you?"
             />
-          } 
+          }
         />
       </Routes>
     </Router>

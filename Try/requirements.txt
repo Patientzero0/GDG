@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-dotenv
+langgraph
+groq
+requests
+pillow
+python-multipart

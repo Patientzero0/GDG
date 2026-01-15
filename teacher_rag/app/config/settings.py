@@ -14,6 +14,9 @@ print(f"DEBUG: .env file exists: {os.path.exists(env_file_path)}")
 class Settings(BaseSettings):
     GROQ_API_KEY: str
     YOUTUBE_API_KEY: str
+    OPENROUTER_API_KEY: str | None = None
+    EMAIL_SENDER: str | None = None
+    EMAIL_PASSWORD: str | None = None
     
     # Paths
     VECTOR_STORE_PATH: str = os.path.join(BASE_DIR, "app", "data", "vector_store", "faiss_index.bin")
@@ -34,5 +37,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = env_file_path
         env_file_encoding = 'utf-8'
+        extra = "ignore"
 
 settings = Settings()

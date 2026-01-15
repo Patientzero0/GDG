@@ -1,0 +1,76 @@
+[
+  {
+    "session_id": "session_1768470222659",
+    "order_id": "ORD12345",
+    "refund_status": "denied",
+    "email": ""
+  },
+  {
+    "session_id": "session_1768470891456",
+    "order_id": "ORD12345",
+    "refund_status": "denied",
+    "email": ""
+  },
+  {
+    "session_id": "session_1768472417692_f3bezum8r",
+    "order_id": "XRD12345",
+    "refund_status": "denied",
+    "email": null,
+    "history": [
+      {
+        "role": "user",
+        "content": "xrd12345",
+        "timestamp": "Just now"
+      },
+      {
+        "role": "assistant",
+        "content": "I can help with refunds or quality complaints. How can I assist?",
+        "timestamp": "Just now"
+      },
+      {
+        "role": "user",
+        "content": "I want a refund in xrd12345",
+        "timestamp": "Just now"
+      },
+      {
+        "role": "assistant",
+        "content": "Please upload an image of the received items.",
+        "timestamp": "Just now"
+      },
+      {
+        "role": "user",
+        "content": "I wanted pizza.",
+        "timestamp": "Just now"
+      },
+      {
+        "role": "assistant",
+        "content": "Refund denied. Image shows a person taking a selfie, not food items. This appears to be fraudulent.",
+        "timestamp": "Just now"
+      }
+    ]
+  },
+  {
+    "session_id": "sess_jpcggrbvn",
+    "order_id": "XRD12345",
+    "refund_status": "denied",
+    "email": null
+  },
+  {
+    "session_id": "sess_jpcggrbvn",
+    "order_id": "XRD12345",
+    "refund_status": "denied",
+    "email": null
+  },
+  {
+    "session_id": "sess_hzg2h7vsy",
+    "order_id": "XRD12345",
+    "refund_status": "denied",
+    "email": null
+  },
+  {
+    "session_id": "sess_hzg2h7vsy",
+    "order_id": "XRD12345",
+    "status": "approved",
+    "email": "aditya@gmail.com"
+  }
+]

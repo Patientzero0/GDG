@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Support Agent</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f3f4f6;
+            --chat-bg: #ffffff;
+            --user-msg: #eff6ff;
+            --agent-msg: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body { background: var(--bg); height: 100vh; display: flex; justify-content: center; align-items: center; }
+
+        .chat-container {
+            width: 100%; max-width: 500px; height: 90vh;
+            background: var(--chat-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex; flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            padding: 16px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            background: white;
+        }
+        .header h1 { font-size: 1.1rem; font-weight: 600; color: #1f2937; }
+        .reset-btn {
+            font-size: 0.8rem; color: #ef4444; cursor: pointer; border: none; background: none;
+        }
+
+        /* Chat Area */
+        .chat-history {
+            flex: 1; overflow-y: auto; padding: 20px;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        .message {
+            max-width: 80%; padding: 12px 16px; border-radius: 12px;
+            font-size: 0.95rem; line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--primary); color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.agent {
+            align-self: flex-start;
+            background: var(--agent-msg); border: 1px solid var(--border);
+            border-bottom-left-radius: 4px; color: #374151;
+        }
+
+        .message img {
+            max-width: 100%; border-radius: 8px; margin-top: 8px; display: block;
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 16px; background: white; border-top: 1px solid var(--border);
+            display: flex; gap: 10px; align-items: flex-end;
+        }
+
+        .file-upload {
+            position: relative; overflow: hidden;
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            background: #f3f4f6; border-radius: 50%; cursor: pointer; color: #6b7280;
+            transition: 0.2s;
+        }
+        .file-upload:hover { background: #e5e7eb; color: #374151; }
+        .file-upload input { position: absolute; font-size: 100px; opacity: 0; right: 0; top: 0; cursor: pointer; }
+
+        .file-upload.has-file { background: #dbeafe; color: var(--primary); border: 2px solid var(--primary); }
+
+        textarea {
+            flex: 1; border: 1px solid var(--border); border-radius: 20px;
+            padding: 10px 16px; resize: none; height: 42px; max-height: 100px;
+            outline: none; font-size: 0.95rem;
+        }
+        textarea:focus { border-color: var(--primary); }
+
+        button.send-btn {
+            background: var(--primary); color: white; border: none;
+            width: 40px; height: 40px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s;
+        }
+        button.send-btn:hover { opacity: 0.9; transform: scale(1.05); }
+        button.send-btn:disabled { background: #9ca3af; cursor: not-allowed; }
+
+        /* Loader */
+        .typing { font-size: 0.8rem; color: #6b7280; margin-left: 10px; display: none; }
+        .typing.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="header">
+        <h1>Refund Support Agent</h1>
+        <button class="reset-btn" onclick="resetSession()">New Chat ↺</button>
+    </div>
+
+    <div class="chat-history" id="chatHistory">
+        <div class="message agent">
+            Hello! I can help with refunds or quality complaints. Please provide your Order ID (e.g., XRD12345) to start.
+        </div>
+    </div>
+
+    <div class="typing" id="typingIndicator">Agent is typing...</div>
+
+    <form class="input-area" id="chatForm">
+        <div class="file-upload" id="fileUploadBtn" title="Attach Image">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+            </svg>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+        
+        <textarea id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+        
+        <button type="submit" class="send-btn" id="sendBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+        </button>
+    </form>
+</div>
+
+<script>
+    const API_URL = "http://localhost:8000/chat";
+    let sessionId = localStorage.getItem("session_id");
+
+    if (!sessionId) {
+        sessionId = "sess_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("session_id", sessionId);
+    }
+
+    const chatHistory = document.getElementById("chatHistory");
+    const chatForm = document.getElementById("chatForm");
+    const messageInput = document.getElementById("messageInput");
+    const imageInput = document.getElementById("imageInput");
+    const fileUploadBtn = document.getElementById("fileUploadBtn");
+    const sendBtn = document.getElementById("sendBtn");
+    const typingIndicator = document.getElementById("typingIndicator");
+
+    // Auto-resize textarea
+    messageInput.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    // Handle File Selection UI
+    imageInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            fileUploadBtn.classList.add('has-file');
+        } else {
+            fileUploadBtn.classList.remove('has-file');
+        }
+    });
+
+    function appendMessage(text, type, imageUrl = null) {
+        const div = document.createElement("div");
+        div.className = `message ${type}`;
+        
+        // Handle newlines
+        let formattedText = text.replace(/\n/g, '<br>');
+        div.innerHTML = formattedText;
+
+        if (imageUrl) {
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            div.appendChild(img);
+        }
+
+        chatHistory.appendChild(div);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+
+    async function sendMessage(e) {
+        e.preventDefault();
+        
+        const text = messageInput.value.trim();
+        const file = imageInput.files[0];
+
+        if (!text && !file) return;
+
+        // Display User Message
+        appendMessage(text || (file ? "Sent an image" : ""), "user", file ? URL.createObjectURL(file) : null);
+
+        // Prepare Data
+        const formData = new FormData();
+        formData.append("session_id", sessionId);
+        if (text) formData.append("message", text);
+        if (file) formData.append("image", file);
+
+        // Reset Input
+        messageInput.value = "";
+        messageInput.style.height = "42px";
+        imageInput.value = "";
+        fileUploadBtn.classList.remove('has-file');
+        sendBtn.disabled = true;
+        typingIndicator.classList.add("active");
+
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) throw new Error("Network error");
+
+            const data = await response.json();
+            
+            // Display Agent Message
+            if (data.message) {
+                appendMessage(data.message, "agent");
+            }
+            
+        } catch (error) {
+            appendMessage("Error connecting to server. Please try again.", "agent");
+            console.error(error);
+        } finally {
+            sendBtn.disabled = false;
+            typingIndicator.classList.remove("active");
+        }
+    }
+
+    function resetSession() {
+        localStorage.removeItem("session_id");
+        location.reload();
+    }
+
+    chatForm.addEventListener("submit", sendMessage);
+
+    // Allow Enter key to submit (Shift+Enter for newline)
+    messageInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage(e);
+        }
+    });
+</script>
+
+</body>
+</html>

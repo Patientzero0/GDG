@@ -1,0 +1,32 @@
+[
+  {
+    "session_id": "sess_zih4y4i6f",
+    "order_id": "XRD12345",
+    "status": "denied",
+    "email": null
+  },
+  {
+    "session_id": "sess_y4gdv84vz",
+    "order_id": "XRD12345",
+    "status": "denied",
+    "email": null
+  },
+  {
+    "session_id": "sess_k1uinqxi5",
+    "order_id": "XRD12345",
+    "status": "approved",
+    "email": "kanishka.utagikar@gmail.com"
+  },
+  {
+    "session_id": "sess_k1uinqxi5",
+    "order_id": "XRD12345",
+    "status": "approved",
+    "email": "kanishka.utagikar@gmail.com"
+  },
+  {
+    "session_id": "sess_0vttofs25",
+    "order_id": "XRD12345",
+    "status": "denied",
+    "email": null
+  }
+]
